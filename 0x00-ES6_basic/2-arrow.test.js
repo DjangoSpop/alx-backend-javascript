@@ -1,14 +1,19 @@
 import getNeighborhoodsList from './2-arrow';
 
 describe('getNeighborhoodsList', () => {
-    it('should return an array of neighborhoods', () => {
-        const neighborhoods = getNeighborhoodsList();
-        expect(Array.isArray(neighborhoods)).toBe(true);
+    let neighborhoodsList;
+
+    beforeEach(() => {
+        neighborhoodsList = getNeighborhoodsList();
     });
 
-    it('should return the correct list of neighborhoods', () => {
-        const neighborhoods = getNeighborhoodsList();
-        const expectedNeighborhoods = ['Neighborhood 1', 'Neighborhood 2', 'Neighborhood 3'];
-        expect(neighborhoods).toEqual(expectedNeighborhoods);
+    it('should initialize with default neighborhoods', () => {
+        expect(neighborhoodsList.sanFranciscoNeighborhoods).toEqual(['SOMA', 'Union Square']);
+    });
+
+    it('should add a new neighborhood', () => {
+        const newNeighborhood = 'Mission District';
+        const updatedNeighborhoods = neighborhoodsList.addNeighborhood(newNeighborhood);
+        expect(updatedNeighborhoods).toEqual(['SOMA', 'Union Square', 'Mission District']);
     });
 });

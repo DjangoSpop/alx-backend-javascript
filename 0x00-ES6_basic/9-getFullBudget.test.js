@@ -1,19 +1,23 @@
 import getFullBudgetObject from './9-getFullBudget';
 
 describe('getFullBudgetObject', () => {
-    it('should return a budget object with the correct values', () => {
-        const income = 100000;
-        const gdp = 500000;
-        const capita = 1000;
+    test('should return the full budget object with income in dollars and euros', () => {
+        const income = 1000;
+        const gdp = 5000;
+        const capita = 10;
 
-        const expectedBudgetObject = {
-            income: 100000,
-            gdp: 500000,
-            capita: 1000,
+        const expected = {
+            income: 1000,
+            gdp: 5000,
+            capita: 10,
+            getIncomeInDollars: expect.any(Function),
+            getIncomeInEuros: expect.any(Function),
         };
 
         const result = getFullBudgetObject(income, gdp, capita);
 
-        expect(result).toEqual(expectedBudgetObject);
+        expect(result).toEqual(expected);
+        expect(result.getIncomeInDollars(income)).toBe('$1000');
+        expect(result.getIncomeInEuros(income)).toBe('1000 euros');
     });
 });

@@ -16,10 +16,10 @@ test('Concatenating an array and a string', () => {
     expect(result).toEqual([1, 2, 3, 'h', 'e', 'l', 'l', 'o']);
 });
 
-// Test case 3: Concatenating an empty array and a string
-test('Concatenating an empty array and a string', () => {
+// Test case 3: Concatenating two empty arrays
+test('Concatenating two empty arrays', () => {
     const array1 = [];
-    const string = 'world';
-    const result = concatArrays(array1, string);
-    expect(result).toEqual(['w', 'o', 'r', 'l', 'd']);
+    const array2 = [];
+    const result = concatArrays(array1, array2);
+    expect(result).toEqual([]);
 });

@@ -1,42 +1,18 @@
-import getSumOfHoods from './3-default-parameter';
+import getSumOfHoods from './path/to/getSumOfHoods.js';
 
-// Test case 1: Testing with all parameters provided
-console.log(getSumOfHoods(100, 50, 30)); // Output: 180
+describe('getSumOfHoods', () => {
+  it('should return the sum of initialNumber and default expansions', () => {
+    const result = getSumOfHoods(10);
+    expect(result).toBe(118);
+  });
 
-// Test case 2: Testing with only initialNumber provided
-console.log(getSumOfHoods(100)); // Output: 208
+  it('should return the sum of initialNumber and provided expansions', () => {
+    const result = getSumOfHoods(10, 100, 200);
+    expect(result).toBe(310);
+  });
 
-// Test case 3: Testing with only initialNumber and expansion1989 provided
-console.log(getSumOfHoods(100, 50)); // Output: 158
-
-// Test case 4: Testing with only initialNumber and expansion2019 provided
-console.log(getSumOfHoods(100, undefined, 30)); // Output: 130
-
-// Test case 5: Testing with no parameters provided
-console.log(getSumOfHoods()); // Output: 108
-import getSumOfHoods from './3-default-parameter';
-
-// Test case 1: Testing with all parameters provided
-test('Test case 1', () => {
-  expect(getSumOfHoods(100, 50, 30)).toBe(180);
-});
-
-// Test case 2: Testing with only initialNumber provided
-test('Test case 2', () => {
-  expect(getSumOfHoods(100)).toBe(208);
-});
-
-// Test case 3: Testing with only initialNumber and expansion1989 provided
-test('Test case 3', () => {
-  expect(getSumOfHoods(100, 50)).toBe(158);
-});
-
-// Test case 4: Testing with only initialNumber and expansion2019 provided
-test('Test case 4', () => {
-  expect(getSumOfHoods(100, undefined, 30)).toBe(130);
-});
-
-// Test case 5: Testing with no parameters provided
-test('Test case 5', () => {
-  expect(getSumOfHoods()).toBe(108);
+  it('should return the sum of initialNumber and default expansions when no expansions are provided', () => {
+    const result = getSumOfHoods(10, undefined, undefined);
+    expect(result).toBe(118);
+  });
 });
