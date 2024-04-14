@@ -1,26 +1,34 @@
-import appendToEachArrayValue from './11-createEmployeesObject';
+import createEmployeesObject from './11-createEmployeesObject';
 
-describe('appendToEachArrayValue', () => {
-    it('should append the given string to each value in the array', () => {
-        const array = [1, 2, 3];
-        const appendString = 'test_';
-        const expected = ['test_1', 'test_2', 'test_3'];
-        const result = appendToEachArrayValue(array, appendString);
-        expect(result).toEqual(expected);
-    });
+// Test case 1: Department name is "HR" and employees is an empty array
+test('Test case 1', () => {
+    const departmentName = 'HR';
+    const employees = [];
+    const expected = {
+        HR: [],
+    };
+    const result = createEmployeesObject(departmentName, employees);
+    expect(result).toEqual(expected);
+});
 
-    it('should return an empty array if the input array is empty', () => {
-        const array = [];
-        const appendString = 'test_';
-        const expected = [];
-        const result = appendToEachArrayValue(array, appendString);
-        expect(result).toEqual(expected);
-    });
+// Test case 2: Department name is "IT" and employees has 3 elements
+test('Test case 2', () => {
+    const departmentName = 'IT';
+    const employees = ['John', 'Jane', 'Mike'];
+    const expected = {
+        IT: ['John', 'Jane', 'Mike'],
+    };
+    const result = createEmployeesObject(departmentName, employees);
+    expect(result).toEqual(expected);
+});
 
-    it('should return an array with the same length as the input array', () => {
-        const array = [1, 2, 3, 4, 5];
-        const appendString = 'test_';
-        const result = appendToEachArrayValue(array, appendString);
-        expect(result.length).toBe(array.length);
-    });
+// Test case 3: Department name is "Sales" and employees has 1 element
+test('Test case 3', () => {
+    const departmentName = 'Sales';
+    const employees = ['Alice'];
+    const expected = {
+        Sales: ['Alice'],
+    };
+    const result = createEmployeesObject(departmentName, employees);
+    expect(result).toEqual(expected);
 });
