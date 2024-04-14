@@ -1,22 +1,22 @@
 import { taskFirst, getLast, taskNext } from './0-constants';
 
 describe('taskFirst', () => {
-  it('should return the first task', () => {
+  it('should return the correct task', () => {
     const result = taskFirst();
-    // Add your assertion here
+    expect(result).toBe('I prefer const when I can.');
   });
 });
 
 describe('getLast', () => {
-  it('should return the last task', () => {
+  it('should return the correct string', () => {
     const result = getLast();
-    // Add your assertion here
+    expect(result).toBe(' is okay');
   });
 });
 
 describe('taskNext', () => {
-  it('should return the next task', () => {
+  it('should return the correct combination', () => {
     const result = taskNext();
-    // Add your assertion here
+    expect(result).toBe('But sometimes let is okay');
   });
 });

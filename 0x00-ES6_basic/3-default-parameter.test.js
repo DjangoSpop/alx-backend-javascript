@@ -14,3 +14,29 @@ console.log(getSumOfHoods(100, undefined, 30)); // Output: 130
 
 // Test case 5: Testing with no parameters provided
 console.log(getSumOfHoods()); // Output: 108
+import getSumOfHoods from './3-default-parameter';
+
+// Test case 1: Testing with all parameters provided
+test('Test case 1', () => {
+  expect(getSumOfHoods(100, 50, 30)).toBe(180);
+});
+
+// Test case 2: Testing with only initialNumber provided
+test('Test case 2', () => {
+  expect(getSumOfHoods(100)).toBe(208);
+});
+
+// Test case 3: Testing with only initialNumber and expansion1989 provided
+test('Test case 3', () => {
+  expect(getSumOfHoods(100, 50)).toBe(158);
+});
+
+// Test case 4: Testing with only initialNumber and expansion2019 provided
+test('Test case 4', () => {
+  expect(getSumOfHoods(100, undefined, 30)).toBe(130);
+});
+
+// Test case 5: Testing with no parameters provided
+test('Test case 5', () => {
+  expect(getSumOfHoods()).toBe(108);
+});
