@@ -1,9 +1,14 @@
-const { add, subtract } = require('./2-arrow');
+import getNeighborhoodsList from './2-arrow';
 
-// Import the necessary functions from the 2-arrow.js file
+describe('getNeighborhoodsList', () => {
+    it('should return an array of neighborhoods', () => {
+        const neighborhoods = getNeighborhoodsList();
+        expect(Array.isArray(neighborhoods)).toBe(true);
+    });
 
-// Test the add function
-console.log(add(5, 3)); // Expected output: 8
-
-// Test the subtract function
-console.log(subtract(10, 4)); // Expected output: 6
+    it('should return the correct list of neighborhoods', () => {
+        const neighborhoods = getNeighborhoodsList();
+        const expectedNeighborhoods = ['Neighborhood 1', 'Neighborhood 2', 'Neighborhood 3'];
+        expect(neighborhoods).toEqual(expectedNeighborhoods);
+    });
+});

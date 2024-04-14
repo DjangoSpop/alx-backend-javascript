@@ -1,17 +1,22 @@
-// 0-constants.test.js
-const constants = require('./0-constants.js');
+import { taskFirst, getLast, taskNext } from './0-constants';
 
-test('Test taskFirst function', () => {
-  const result = constants.taskFirst();
-  // Add your assertions here
+describe('taskFirst', () => {
+  it('should return the first task', () => {
+    const result = taskFirst();
+    // Add your assertion here
+  });
 });
 
-test('Test getLast function', () => {
-  const result = constants.getLast();
-  // Add your assertions here
+describe('getLast', () => {
+  it('should return the last task', () => {
+    const result = getLast();
+    // Add your assertion here
+  });
 });
 
-test('Test taskNext function', () => {
-  const result = constants.taskNext();
-  // Add your assertions here
+describe('taskNext', () => {
+  it('should return the next task', () => {
+    const result = taskNext();
+    // Add your assertion here
+  });
 });

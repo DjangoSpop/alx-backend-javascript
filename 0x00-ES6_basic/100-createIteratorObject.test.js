@@ -23,9 +23,9 @@ describe('createIteratorObject', () => {
 
         const iterator = createIteratorObject(report);
 
-        expect(iterator.next()).toEqual({ value: 'John Doe', done: false });
-        expect(iterator.next()).toEqual({ value: 30, done: false });
-        expect(iterator.next()).toEqual({ value: 'Software Engineer', done: false });
+        expect(iterator.next()).toEqual({ value: 'name', done: false });
+        expect(iterator.next()).toEqual({ value: 'age', done: false });
+        expect(iterator.next()).toEqual({ value: 'occupation', done: false });
         expect(iterator.next()).toEqual({ value: undefined, done: true });
     });
 });

@@ -13,7 +13,7 @@ describe('createEmployeesObject', () => {
         });
     });
 
-    it('should return an empty object if no employees are provided', () => {
+    it('should return an object with an empty array if no employees are provided', () => {
         const departmentName = 'Sales';
         const employees = [];
 
