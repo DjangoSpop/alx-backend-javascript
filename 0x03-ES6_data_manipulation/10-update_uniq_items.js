@@ -1,9 +1,9 @@
-import groceriesList from "./9-groceries_list.js";
-export default function updateUniqueItems(map) {
-    for (const [key, value] of map) {
-        if (value === 1) {
-            map.set(key, 100);
-        }
+export default function updateUniqueItems(item) {
+  if (Object.getPrototypeOf(item) !== Map.prototype) throw new TypeError('Cannot process');
+  item.forEach((quantity, name) => {
+    if (quantity === 1) {
+      item.set(name, 100);
     }
-    return map;
+  });
+  return item;
 }

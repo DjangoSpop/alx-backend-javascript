@@ -1,4 +1,8 @@
-import { getListStudent } from './0-get_list_students.js';
 export default function getListStudentIds(students) {
-    return students.map(student => student.id);
+  let studentList = [];
+  if (!(students instanceof Array)) {
+    return studentList;
+  }
+  studentList = students.map((student) => student.id);
+  return studentList;
 }

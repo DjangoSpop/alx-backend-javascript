@@ -1,9 +1,10 @@
 export default function cleanSet(set, startString) {
-    let result = '';
-    for (const value of set) {
-        if (value.startsWith(startString)) {
-            result += value.slice(startString.length) + '-';
-        }
+  const setRet = [];
+  if (startString === '' || typeof startString !== 'string') return '';
+  set.forEach((s) => {
+    if (typeof s === 'string' && s.startsWith(startString)) {
+      setRet.push(s.slice(startString.length));
     }
-    return result.slice(0, -1);
+  });
+  return setRet.join('-');
 }
