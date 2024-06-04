@@ -1,4 +1,4 @@
-// 0-console.js
+#!/usr/bin/node
 const displayMessage = (message) => {
   console.log(message);
 };
