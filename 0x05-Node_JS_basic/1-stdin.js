@@ -8,3 +8,4 @@ const handleInput = (data) => {
 };
 
 process.stdin.on('data', handleInput);
+module.exports = handleInput;
