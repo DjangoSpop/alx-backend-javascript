@@ -1,11 +1,9 @@
 process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
-const handleInput = (data) => {
-  const name = data.toString().trim();
-  process.stdout.write(`Your name is: ${name}\n`);
-  process.stdout.write('This important software is now closing\n');
-  process.stdin.removeListener('data', handleInput);
-};
+process.stdin.on('data', (data) => {
+  process.stdout.write(`Your name is: ${data}`);
+});
 
-process.stdin.on('data', handleInput);
-module.exports = handleInput;
+process.stdin.on('end', () => {
+  process.stdout.write('This important software is now closing\n');
+});

@@ -1,4 +1,4 @@
-const countStudents = require('../2-read_file');
+const countStudents = require('./2-read_file');
 const path = require('path');
 
 test('should throw an error for invalid file path', () => {

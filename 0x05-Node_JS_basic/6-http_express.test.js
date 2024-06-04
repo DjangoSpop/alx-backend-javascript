@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../6-http_express');
+const app = require('./6-http_express');
 
 describe('HTTP server with Express', () => {
   test('should respond with "Hello Holberton School!" for the root endpoint', async () => {
