@@ -1,9 +1,3 @@
-/**
- * @file A simple HTTP server that handles requests for the root route ("/") and the "/students" route.
- * It reads a database file, counts the number of students and groups them based on a field.
- * The server responds with the number of students and the list of students in each group.
- */
-
 const http = require('http');
 const fs = require('fs');
 
@@ -12,12 +6,6 @@ const HOST = 'localhost';
 const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
-/**
- * Counts the number of students and groups them based on a field.
- * @param {string} dataPath - The path to the database file.
- * @returns {Promise<string>} A promise that resolves to a report containing the number of students and the list of students in each group.
- * @throws {Error} If the database file cannot be loaded.
- */
 const countStudents = (dataPath) => new Promise((resolve, reject) => {
   if (!dataPath) {
     reject(new Error('Cannot load the database'));
