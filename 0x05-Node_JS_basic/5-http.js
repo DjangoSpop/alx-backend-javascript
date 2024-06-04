@@ -1,3 +1,9 @@
+/**
+ * @file A simple HTTP server that handles requests for the root route ("/") and the "/students" route.
+ * It reads a database file, counts the number of students and groups them based on a field.
+ * The server responds with the number of students and the list of students in each group.
+ */
+
 const http = require('http');
 const fs = require('fs');
 
@@ -6,7 +12,12 @@ const HOST = 'localhost';
 const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
-
+/**
+ * Counts the number of students and groups them based on a field.
+ * @param {string} dataPath - The path to the database file.
+ * @returns {Promise<string>} A promise that resolves to a report containing the number of students and the list of students in each group.
+ * @throws {Error} If the database file cannot be loaded.
+ */
 const countStudents = (dataPath) => new Promise((resolve, reject) => {
   if (!dataPath) {
     reject(new Error('Cannot load the database'));
@@ -60,9 +71,20 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
   }
 });
 
+/**
+ * An array of route handlers for the server.
+ * Each route handler has a route and a handler function.
+ * The handler function is called when a request is made to the corresponding route.
+ * The handler function sends a response with the appropriate content.
+ */
 const SERVER_ROUTE_HANDLERS = [
   {
     route: '/',
+    /**
+     * Handler function for the root route ("/").
+     * @param {http.IncomingMessage} req - The request object.
+     * @param {http.ServerResponse} res - The response object.
+     */
     handler(_, res) {
       const responseText = 'Hello Holberton School!';
 
@@ -74,6 +96,11 @@ const SERVER_ROUTE_HANDLERS = [
   },
   {
     route: '/students',
+    /**
+     * Handler function for the "/students" route.
+     * @param {http.IncomingMessage} req - The request object.
+     * @param {http.ServerResponse} res - The response object.
+     */
     handler(_, res) {
       const responseParts = ['This is the list of our students'];
 
