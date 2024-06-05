@@ -1,4 +1,3 @@
-// full_server/utils.js
 const fs = require('fs');
 const util = require('util');
 
