@@ -1,11 +1,23 @@
-const http = require('http');
+/**
+ * This module creates an Express server that handles HTTP requests.
+ * It provides an endpoint to retrieve a list of students from a database file.
+ * The server listens on a specified port and sends a response with the student information.
+ * @module http_express
+ */
+
+const express = require('express');
 const fs = require('fs');
 
+const app = express();
 const PORT = 1245;
-const HOST = 'localhost';
-const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
+/**
+ * Counts the number of students in each group and generates a report.
+ * @param {string} dataPath - The path to the database file.
+ * @returns {Promise<string>} A promise that resolves to the generated report.
+ * @throws {Error} If the database file cannot be loaded.
+ */
 const countStudents = (dataPath) => new Promise((resolve, reject) => {
   if (!dataPath) {
     reject(new Error('Cannot load the database'));
@@ -60,70 +72,46 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
 });
 
 /**
- * An array of route handlers for the server.
- * Each route handler has a route and a handler function.
- * The handler function is called when a request is made to the corresponding route.
- * The handler function sends a response with the appropriate content.
+ * Handles the root endpoint and sends a greeting message.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
  */
-const SERVER_ROUTE_HANDLERS = [
-  {
-    route: '/',
-    /**
-     * Handler function for the root route ("/").
-     * @param {http.IncomingMessage} req - The request object.
-     * @param {http.ServerResponse} res - The response object.
-     */
-    handler(_, res) {
-      const responseText = 'Hello Holberton School!';
+app.get('/', (_, res) => {
+  res.send('Hello Holberton School!');
+});
 
+/**
+ * Handles the '/students' endpoint and sends a response with the list of students.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
+app.get('/students', (_, res) => {
+  const responseParts = ['This is the list of our students'];
+
+  countStudents(DB_FILE)
+    .then((report) => {
+      responseParts.push(report);
+      const responseText = responseParts.join('\n');
       res.setHeader('Content-Type', 'text/plain');
       res.setHeader('Content-Length', responseText.length);
       res.statusCode = 200;
       res.write(Buffer.from(responseText));
-    },
-  },
-  {
-    route: '/students',
-    /**
-     * Handler function for the "/students" route.
-     * @param {http.IncomingMessage} req - The request object.
-     * @param {http.ServerResponse} res - The response object.
-     */
-    handler(_, res) {
-      const responseParts = ['This is the list of our students'];
-
-      countStudents(DB_FILE)
-        .then((report) => {
-          responseParts.push(report);
-          const responseText = responseParts.join('\n');
-          res.setHeader('Content-Type', 'text/plain');
-          res.setHeader('Content-Length', responseText.length);
-          res.statusCode = 200;
-          res.write(Buffer.from(responseText));
-        })
-        .catch((err) => {
-          responseParts.push(err instanceof Error ? err.message : err.toString());
-          const responseText = responseParts.join('\n');
-          res.setHeader('Content-Type', 'text/plain');
-          res.setHeader('Content-Length', responseText.length);
-          res.statusCode = 200;
-          res.write(Buffer.from(responseText));
-        });
-    },
-  },
-];
-
-app.on('request', (req, res) => {
-  for (const routeHandler of SERVER_ROUTE_HANDLERS) {
-    if (routeHandler.route === req.url) {
-      routeHandler.handler(req, res);
-      break;
-    }
-  }
+    })
+    .catch((err) => {
+      responseParts.push(err instanceof Error ? err.message : err.toString());
+      const responseText = responseParts.join('\n');
+      res.setHeader('Content-Type', 'text/plain');
+      res.setHeader('Content-Length', responseText.length);
+      res.statusCode = 200;
+      res.write(Buffer.from(responseText));
+    });
 });
 
-app.listen(PORT, HOST, () => {
-  process.stdout.write(`Server listening at -> http://${HOST}:${PORT}\n`);
+/**
+ * Starts the server and listens on the specified port.
+ */
+app.listen(PORT, () => {
+  console.log(`Server listening on PORT ${PORT}`);
 });
 
 module.exports = app;

@@ -1,4 +1,4 @@
-const countStudents = require('../3-read_file_async');
+const countStudents = require('./3-read_file_async');
 const path = require('path');
 
 test('should throw an error for invalid file path', async () => {

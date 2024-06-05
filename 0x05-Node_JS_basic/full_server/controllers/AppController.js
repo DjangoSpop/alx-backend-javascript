@@ -1,7 +1,12 @@
-const AppController = {
-  getHomepage: (req, res) => {
-    res.status(200).send('Hello Holberton School!');
-  },
-};
+#!/usr/bin/node
+/**
+ * Miscellaneous route.
+ */
+class AppController {
+  static getHomepage(request, response) {
+    response.status(200).send('Hello Holberton School!');
+  }
+}
 
+export default AppController;
 module.exports = AppController;

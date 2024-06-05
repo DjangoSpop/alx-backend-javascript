@@ -1,5 +1,6 @@
+#!/usr/bin/node
 const request = require('supertest');
-const app = require('../full_server/server');
+const app = require('./full_server/server');
 const path = require('path');
 
 describe('HTTP server with Express (advanced)', () => {
